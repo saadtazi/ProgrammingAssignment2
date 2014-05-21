@@ -35,12 +35,15 @@ cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   m <- x$getinverse()
   if(!is.null(m)) {
-    message("getting cached data")
+    # getting cached value
     return(m)
   }
+  # not in cache... yet...
   data <- x$get()
   # `solve` is the R function that calculates the inverse of a matrix
   m <- solve(data, ...)
+  # store results in cache
   x$setinverse(m)
+  # and return it
   m
 }
